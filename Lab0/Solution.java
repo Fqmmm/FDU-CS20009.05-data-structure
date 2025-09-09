@@ -1,7 +1,7 @@
 package Lab0;
 import java.util.Scanner;
 
-public class Main {
+public class Solution {
     public static void main(String[] args) {
         try (Scanner sc = new Scanner(System.in)) {
             // 读入target
