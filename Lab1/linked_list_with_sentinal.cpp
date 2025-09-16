@@ -3,9 +3,9 @@ using namespace std;
 
 struct Node
 {
-    unsigned int data;
-    Node *next;
-    Node(unsigned int data) : Node(data, NULL) {}
+    unsigned int data; 
+    Node *next;        
+    Node(unsigned int data) : Node(data, NULL){}
 
     Node(unsigned int data, Node *next)
     {
@@ -16,107 +16,110 @@ struct Node
 
 class LinkedList
 {
-private:
-    Node *sentinal;
-
-public:
-    LinkedList()
-    {
-        Node *first = new Node(1);
-        sentinal = new Node(0, first);
-    }
-
-    ~LinkedList()
-    {
-        Node *p = sentinal;
-        while (p)
+    private:
+        Node *sentinal; 
+    public:
+        LinkedList()
         {
-            Node *tmp = p->next;
-            delete p;
-            p = tmp;
+            Node *first = new Node(1);
+            sentinal = new Node(0, first);
         }
-    }
 
-    // 插入
-    void insert(unsigned int x, unsigned int y)
-    {
-        Node *p = sentinal->next;
-        while (p)
+        ~LinkedList()
         {
-            if (p->data == x)
+            Node *p = sentinal;
+            while (p)
             {
-                Node *node = new Node(y);
-                node->next = p->next;
-                p->next = node;
-                return;
+                Node *tmp = p->next;
+                delete p;
+                p = tmp;
             }
-            p = p->next;
         }
-    }
 
-    // 查询
-    unsigned int get_next(unsigned int x)
-    {
-        Node *p = sentinal->next;
-        while (p)
+        // 插入
+        void insert(unsigned int x, unsigned int y)
         {
-            if (p->data == x)
+            Node *p = sentinal->next;
+            while (p)
             {
-                if (p->next)
-                    return p->next->data;
-                else
-                    return 0;
+                if (p->data == x)
+                {
+                    Node *node = new Node(y);
+                    node->next = p->next;
+                    p->next = node;
+                    return;
+                }
+                p = p->next;
             }
-            p = p->next;
         }
-        return 0;
-    }
 
-    // 删除
-    void remove(unsigned int x)
-    {
-        Node *p = sentinal->next;
-        while (p)
+        // 查询
+        unsigned int get_next(unsigned int x)
         {
-            if (p->data == x)
+            Node *p = sentinal->next;
+            while (p)
             {
-                p->data = y;
-                return;
+                if (p->data == x)
+                {
+                    if (p->next)
+                        return p->next->data;
+                    else
+                        return 0;
+                }
+                p = p->next;
             }
-            p = p->next;
+            return 0;
         }
-    }
 
-    // 把x改为y
-    void modify(unsigned int x, unsigned int y)
-    {
-        Node *p = sentinal->next;
-        while (p)
+        // 删除
+        void remove(unsigned int x)
         {
-            if (p->data == x)
+            // if (head->data == x)
+            //     return; 
+            Node *p = sentinal->next;
+            while (p && p->next)
             {
-                p->data = y;
-                return;
+                if (p->next->data == x)
+                {
+                    Node *tmp = p->next;
+                    p->next = tmp->next;
+                    delete tmp;
+                    return;
+                }
+                p = p->next;
             }
-            p = p->next;
         }
-    }
 
-    // 打印链表
-    void print()
-    {
-        Node *p = sentinal->next;
-        bool first = true;
-        while (p)
+        // 把x改为y
+        void modify(unsigned int x, unsigned int y)
         {
-            if (!first)
-                cout << " ";
-            cout << p->data;
-            first = false;
-            p = p->next;
+            Node *p = sentinal->next;
+            while (p)
+            {
+                if (p->data == x)
+                {
+                    p->data = y;
+                    return;
+                }
+                p = p->next;
+            }
         }
-        cout << "\n";
-    }
+
+        // 打印链表
+        void print()
+        {
+            Node *p = sentinal->next;
+            bool first = true;
+            while (p)
+            {
+                if (!first)
+                    cout << " ";
+                cout << p->data;
+                first = false;
+                p = p->next;
+            }
+            cout << "\n";
+        }
 };
 
 int main()
