@@ -4,20 +4,16 @@ using namespace std;
 const int MOD = 1e9 + 7;
 
 // 安全取模，保证非负
-inline long long mod(long long x)
+long long mod(long long x)
 {
     return (x % MOD + MOD) % MOD;
 }
 
 int main()
 {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
     int n, p, m;
     cin >> n >> p >> m;
 
-    // 用二维 vector 存储 A、B、C
     vector<vector<long long>> A(n, vector<long long>(p));
     vector<vector<long long>> B(p, vector<long long>(m));
     vector<vector<long long>> C(n, vector<long long>(m, 0));
